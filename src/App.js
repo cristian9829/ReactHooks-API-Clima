@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Header from './components/Header';
 import Formulario from './components/Formulario';
 import Error from './components/error';
+import Clima from './components/Clima';
 import { async } from 'q';
 
 function App() {
@@ -54,9 +55,11 @@ function App() {
    if(error){
      //Hay un error, mostrarlo
      componente = <Error mensaje="Ambos campos son obligatorios" />
+   }else if(resultado.cod === '404'){
+     componente = <Error mensaje = "La ciudad no existe en nuestra API" />
    }else{
      // Mostrar el clima
-     componente = null;
+     componente = <Clima resultado = {resultado} />;
    }
 
   return (
